@@ -60,4 +60,45 @@ public class ShoppingCartTest {
         assertThat(shoppingCart.getProductItemCount(), is(equalTo(2)));
         assertThat(shoppingCart.calculateTotal(), is(equalTo(3*5.99D + 10*0.49)));
     }
+
+
+    @Test
+    public void testOfRemovingProductItem() throws Exception {
+        // given
+        shoppingCart = new ShoppingCartImpl();
+        ProductItem item1 = new ProductItem("stapler", 3, 5.99D);
+        ProductItem item2 = new ProductItem("pencils", 10, 0.49D);
+
+        // when
+        shoppingCart.addItem(item1);
+        shoppingCart.addItem(item2);
+
+        shoppingCart.removeItem(item2);
+        // then
+        assertThat(shoppingCart, is(not(nullValue())));
+        assertThat(shoppingCart.getProductItemCount(), is(equalTo(1)));
+
+    }
+
+
+    @Test
+    public void testOfEmptyShoppingCart() throws Exception {
+        // given
+        shoppingCart = new ShoppingCartImpl();
+        ProductItem item1 = new ProductItem("stapler", 3, 5.99D);
+        ProductItem item2 = new ProductItem("pencils", 10, 0.49D);
+
+        // when
+        shoppingCart.addItem(item1);
+        shoppingCart.addItem(item2);
+        shoppingCart.emptyShoppingCart();
+
+        // then
+        assertThat(shoppingCart, is(not(nullValue())));
+        assertThat(shoppingCart.getProductItemCount(), is(equalTo(0)));
+
+    }
+
+
+
 }

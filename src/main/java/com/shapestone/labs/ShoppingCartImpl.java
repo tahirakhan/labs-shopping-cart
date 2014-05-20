@@ -17,7 +17,7 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     @Override
     public void removeItem(ProductItem item) {
-
+        items.remove(item);
     }
 
     @Override
